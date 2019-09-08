@@ -38,10 +38,6 @@ function init() {
     ball1.position.y = 0.65;
     scene.add(ball1);
 
-
-
-
-
     var ballgeo = new THREE.SphereGeometry( 0.3, 60,60 );
     ball2 = new THREE.Mesh( ballgeo , mat2 );
     ball2.userData = { URL: "http://stackoverflow.com"};
@@ -51,14 +47,11 @@ function init() {
     scene.add(ball2);
 
 
-
-
     var ballgeo = new THREE.SphereGeometry( 0.23, 60,60 );
     ball3 = new THREE.Mesh( ballgeo , mat3 );
     ball3.position.x = 1.32;
     ball3.position.y = 0.65;
     scene.add(ball3);
-
 
 
     ball3.rotation.x = -0.5;
@@ -73,8 +66,7 @@ function init() {
     d.appendChild(renderer.domElement);
 
 
-    var domEvents	= new THREEx.DomEvents(camera, renderer.domElement)
-
+    var domEvents = new THREEx.DomEvents(camera, renderer.domElement)
 
     var url	= 'https://docs.google.com/document/d/1O8S2wXhmeed4K-G-ZeQRBmy9qipTJjILxRiUFerfRgI/export?format=pdf'
     THREEx.Linkify(domEvents, ball1, url)
@@ -86,33 +78,16 @@ function init() {
     THREEx.Linkify(domEvents, ball3, url)
 }
 
-function mousemove(event){
-    mouse.x = ( event.clientX / player.width ) * 2 - 1;
-    mouse.y = - ( event.clientY / player.height ) * 2 + 1;
-}
-
-
-function onDocumentMouseDown(event) {
-    console.log("onMouseDown")
-    // console.log("yo: ",this.getObjectByName())
-    event.preventDefault();
-    var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
-    projector.unprojectVector(vector, camera);
-    var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
-    var intersects = raycaster.intersectObjects(ball2);
-    if (intersects.length > 0) {
-        window.open(intersects[0].object.userData.URL);
-    }
-}
-
 function animate() {
     requestAnimationFrame(animate);
     height = window.innerHeight, width = window.innerWidth;
     renderer.setSize(width, height);
     camera.aspect = width/height;
-    ball1.rotation.y += 0.01;
-    ball2.rotation.y += 0.02;
-    ball3.rotation.y += 0.03;
+    ball1.rotation.z += 0.01;
+
+    // ball1.rotation.y += 0.01;
+    // ball2.rotation.y += 0.02;
+    // ball3.rotation.y += 0.03;
 
     renderer.render(scene, camera);
 }

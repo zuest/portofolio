@@ -4,15 +4,14 @@ init();
 animate();
 
 function init() {
-
+        var bg = '#210039';
+        var radiusSize = 0;
         loader = new THREE.TextureLoader(new THREE.LoadingManager());
         texture1 = loader.load('textures/github.png');
         texture2 = loader.load('textures/linkedin.jpg');
-        console.log("not running here")
         texture3 = loader.load('textures/resume.jpg');
 
-
-    var bg = '#210039';
+    
     // renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor(bg);
@@ -23,21 +22,37 @@ function init() {
     scene = new THREE.Scene();
 
     // camera
-    camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 100 );
+
+   if(   window.innerWidth > 300 && window.innerWidth < 500  ) {
+    radiusSize = 60;   
+   }
+   else if( window.innerWidth > 501 && window.innerWidth < 900 ) {
+    radiusSize = 50;
+   }
+
+   else if( window.innerWidth > 901 && window.innerWidth < 1400 ) {
+    radiusSize = 55;
+   }
+
+   else if(  window.innerWidth > 1400 ) {
+    radiusSize = 40;
+    }
+    
+    camera = new THREE.PerspectiveCamera( radiusSize, window.innerWidth / window.innerHeight, 1, 100 );
     camera.position.set( 20, 20, 20 );
 
     // controls
     controls = new THREE.OrbitControls( camera );
-    controls.minDistance = 70;
-    controls.maxDistance = 50;
+    controls.minDistance = 90;
+    // controls.maxDistance = 50;
 
     // axes
     // scene.add( new THREE.AxisHelper( 20 ) );
 
     // geometry
-    var geometry1 =  new THREE.SphereGeometry( 4, 60,60 );
-    var geometry2 =  new THREE.SphereGeometry( 4, 60,60 );
-    var geometry3 =  new THREE.SphereGeometry( 4, 60,60 );
+    var geometry1 =  new THREE.SphereGeometry( 3, 60,60 );
+    var geometry2 =  new THREE.SphereGeometry( 3, 60,60 );
+    var geometry3 =  new THREE.SphereGeometry( 3, 60,60 );
 
 
 

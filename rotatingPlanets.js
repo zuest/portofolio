@@ -95,7 +95,7 @@ function init() {
     pivot3.add( mesh3 );
 
     var domEvents = new THREEx.DomEvents(camera, renderer.domElement)
-    var url	= 'https://docs.google.com/document/d/1O8S2wXhmeed4K-G-ZeQRBmy9qipTJjILxRiUFerfRgI/export?format=pdf'
+    var url	= 'https://drive.google.com/file/d/1C9iGXxoWYfoBVFy9-6TPEFNTimGRq2di/view?usp=share_link/export?format=pdf'
     THREEx.Linkify(domEvents, mesh1, url)
 
     var url	= 'https://github.com/zuest'
